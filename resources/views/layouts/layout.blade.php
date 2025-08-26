@@ -10,17 +10,18 @@
     <header>
         <div></div>
         <nav>
-            <ul class="header-nav">
+            <ul class="list-none flex gap-4">
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('/about') }}">About</a></li>
                 <li><a href="{{ url('/product') }}">Products</a></li>
+                <li><a href="{{ url('/product/category') }}">Categories</a></li>
                 @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @endguest
                 @auth
                     <li>
-                        <button onclick="window.location.href='/logout'">Logout</button>
+                        <button onclick="window.location.href='/logout'" class="btn">Logout</button>
                     </li>
                 @endauth
             </ul>

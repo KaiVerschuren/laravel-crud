@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
+
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -20,13 +20,7 @@ class PageController extends Controller
     public function about()
     {
         return view('about');
-    }
-
-    public function product()
-    {
-        $items = Product::all(); // get products
-        return view('product', compact('items'));
-    }
+    }  
 
     public function register(Request $request)
     {
