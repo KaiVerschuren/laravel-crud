@@ -6,6 +6,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
+
+
 <body>
     <header>
         <div></div>
@@ -27,6 +29,22 @@
             </ul>
         </nav>
     </header>
+
+    @if(session('success'))
+        <div id="alert-success" class="bg-green-200 text-green-800 p-3 rounded">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div class="bg-red-200 text-red-800 p-3 rounded">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <main>
         @yield('content')

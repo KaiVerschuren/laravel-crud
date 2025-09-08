@@ -38,7 +38,7 @@ class PageController extends Controller
             ]);
         }
 
-        return view('/register'); // show the form
+        return view('/register');
     }
 
 
@@ -55,7 +55,7 @@ class PageController extends Controller
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate(); // prevent session fixation
 
-                return redirect('/product'); // logged in
+                return redirect()->route('product.index')->with('success', 'Logged in successfully.');
             }
 
             return back()->withErrors([
@@ -69,7 +69,7 @@ class PageController extends Controller
     public function logout()
     {
         Auth::logout(); // log out the user
-        return redirect('/'); // redirect to home
+        return redirect()->route('/')->with('success', 'Logged out successfully.');
     }
 
 }
