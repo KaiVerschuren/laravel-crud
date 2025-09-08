@@ -44,7 +44,7 @@ class ProductController extends Controller
         // sync categories (updates catjunction table)
         $product->categories()->sync($request->input('categories', []));
 
-        
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
 
 

@@ -14,7 +14,7 @@
                     <input class="input w-full" type="text" name="price" value="{{ $product->price }}">
                     <input class="input w-full" type="text" name="image" value="{{ $product->image ?? 'No image' }}">
                     <select name="categories[]" class="select w-full">
-                        <option selected disabled>Color scheme</option>
+                        <option selected disabled>Categories</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ $product->categories->contains($category->id) ? 'selected' : '' }}>
                                 {{ $category->name }}
