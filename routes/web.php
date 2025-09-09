@@ -23,6 +23,7 @@ Route::get('/product/{id?}', [ProductController::class, 'index'])
     ->where('id', '[0-9]+')
     ->name('product.index');
 Route::get('/product/category', [ProductController::class, 'category'])->name('product.category');
+Route::get('/product/image', [ProductController::class, 'image'])->name('product.image');
 
 Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('product.update');
@@ -30,6 +31,11 @@ Route::get('/product/{id}/delete', [ProductController::class, 'delete'])->name('
 
 Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
 Route::post('/product/add', [ProductController::class, 'store'])->name('product.store');
+Route::get('/product/addImage', [ProductController::class, 'addImage'])->name('product.addImage');
+Route::post('/product/addImage', [ProductController::class, 'storeImage'])->name('product.storeImage');
+
+Route::get('/product/addjunctionimage', [ProductController::class, 'addjunctionimage'])->name('product.addjunctionimage');
+Route::post('/product/addjunctionimage', [ProductController::class, 'storejunctionimage'])->name('product.storejunctionimage');
 
 Route::get('/product/addjunction', [ProductController::class, 'addjunction'])->name('product.addjunction');
 Route::post('/product/addjunction', [ProductController::class, 'storejunction'])->name('product.storejunction');
@@ -38,5 +44,3 @@ Route::match(['get','post'], '/register', [PageController::class, 'register'])->
 Route::match(['get','post'], '/login', [PageController::class, 'login'])->name('login');
 
 Route::get('/logout', [PageController::class, 'logout'])->name('logout');
-
-

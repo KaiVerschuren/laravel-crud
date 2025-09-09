@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Product;
+use App\Models\Image;
+use App\Models\ImageJunction;
 use App\Models\Category;
 use App\Models\CategoryJunction;
 
@@ -22,6 +25,12 @@ class ProductController extends Controller
         $categories = Category::all();
         $products = Product::all();
         return view('product.category', compact('categories'));
+    }
+
+    public function image()
+    {
+        $images = Image::All();
+        return view('product.image', compact('images'));
     }
 
     public function edit($id)
@@ -59,6 +68,49 @@ class ProductController extends Controller
     public function add()
     {
         return view('product.add');
+    }
+
+    public function addImage()
+    {
+        return view('product.addImage');
+    }
+
+    public function storeImage(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'altText' => 'required|string|max:255',
+        ]);
+
+        $image = new Image();
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->store('images', 'public');
+            $image->path = $path;
+        }
+
+        $image->alt_text = $request->input('altText');
+        $image->save();
+
+        return redirect()->route('product.index')->with('success', 'Image added successfully.');
+    }
+
+    public function addjunctionimage()
+    {
+        $images = Image::all();
+        $products = Product::all();
+        return view('product.addjunctionimage', compact('images', 'products'));
+    }
+
+    public function storejunctionimage(Request $request)
+    {
+        $imageJunction = new ImageJunction();
+        $imageJunction->product_id = $request->input('product_id');
+        $imageJunction->image_id = $request->input('image_id');
+        $imageJunction->save();
+
+        return redirect()->route('product.image')->with('success', 'Image junction added successfully.');
     }
 
     public function addjunction()

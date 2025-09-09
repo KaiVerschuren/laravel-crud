@@ -17,6 +17,7 @@
                 <li><a href="{{ url('/about') }}">About</a></li>
                 <li><a href="{{ url('/product') }}">Products</a></li>
                 <li><a href="{{ url('/product/category') }}">Categories</a></li>
+                <li><a href="{{ url('/product/image') }}">images</a></li>
                 @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
